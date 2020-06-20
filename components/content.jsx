@@ -14,8 +14,11 @@ const Content = () => {
         return str.split(' ').map(function (word, index) {
             if (index == 0) {
                 return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+            } else if (word.length == 1) {
+                return word.toLowerCase()
+            } else {
+                return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
             }
-            return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
         }).join('%20');
     }
 
@@ -67,7 +70,7 @@ const Content = () => {
                     <CardTitle><h2 className="text-center">{bio.title}</h2></CardTitle>
                 </CardBody>
                 <CardBody>
-                    <p className="text-right"><a onClick={copyText}>{copy}</a></p>
+                    <p className="text-right" onClick={copyText}><span className="btn">{copy}</span></p>
                     <div id="bio">
                         <CardText dangerouslySetInnerHTML={{ __html: bio.bio?.replace(/\n/g, '<br>') }} />
                         <p>Fonte: Wikpedia</p>
